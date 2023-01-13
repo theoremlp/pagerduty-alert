@@ -1,0 +1,35 @@
+{
+  "name": "pagerduty-alert",
+  "version": "0.0.0",
+  "main": "lib/main.js",
+  "license": "Proprietary",
+  "private": true,
+  "scripts": {
+    "package": "yarn build && yarn ncc build --source-map",
+    "build": "yarn && yarn lint && yarn tsc",
+    "format": "yarn eslint 'src/' --fix && prettier --write 'src/**/*.{js,jsx,css,json,md,scss,ts,tsx}'",
+    "lint": "yarn eslint 'src/' && prettier --check 'src/**/*.{js,jsx,css,json,md,scss,ts,tsx}'",
+    "test": "yarn jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.7",
+    "@types/node": "^18.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "@vercel/ncc": "^0.34.0",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.3.1",
+    "prettier": "^2.8.2",
+    "ts-jest": "^29.0.4",
+    "typescript": "^4.9.4"
+  },
+  "packageManager": "yarn@3.1.0",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/github": "^5.1.1",
+    "@pagerduty/pdjs": "^2.2.4"
+  }
+}
