@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import { event as pagerDutyEvent } from "@pagerduty/pdjs";
 import { Severity } from "@pagerduty/pdjs/build/src/events";
-import * as constants from "./constants";
+import * as inputs from "./inputs";
 
 function coerceSeverity(input: string): Severity {
   if (!["critical", "error", "warning", "info"].includes(input)) {
@@ -12,27 +12,29 @@ function coerceSeverity(input: string): Severity {
 }
 
 async function run(): Promise<void> {
+  const { context } = github;
+  const runUrl = `${context.serverUrl}/${context.repo}/actions/runs/${context.runId}`;
   try {
-    const maybeDescription = core.getInput(constants.DESCRIPTION);
     await pagerDutyEvent({
       data: {
-        routing_key: core.getInput(constants.PD_INTEGRATION_KEY),
+        routing_key: inputs.PD_INTEGRATION_KEY,
         event_action: "trigger",
         payload: {
-          component: github.context.action,
-          summary: core.getInput(constants.SUMMARY),
+          component: context.action,
+          summary: `${context.action} failed`,
           source: "GitHub Actions",
-          severity: coerceSeverity(core.getInput(constants.SEVERITY)),
+          severity: coerceSeverity(inputs.SEVERITY),
           class: "build",
-          group: "master",
+          group: context.ref,
           custom_details: {
-            description: maybeDescription !== "" ? maybeDescription : undefined,
+            description: inputs.SUMMARY,
           },
         },
-        dedup_key: `${github.context.action}-${github.context.runId}`,
+        dedup_key: `${context.action}-${github.context.runId}`,
         links: [
           {
-            href: `${github.context.serverUrl}/${github.context.repo}/actions/runs/${github.context.runId}`,
+            href: runUrl,
+            text: runUrl,
           },
         ],
       },
