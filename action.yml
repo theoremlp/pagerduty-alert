@@ -5,19 +5,22 @@ inputs:
   pd-integration-key:
     required: true
     description: The corresponding integration key for a PagerDuty service.
+  title:
+    required: true
+    description: A short, human-readable title for the alert (1024 character max).
   summary:
     required: true
     description: |
-      A brief text summary of the event, used to generate the summaries/titles of any associated alerts. 
-      The maximum permitted length of this property is 1024 characters.
+      A longer text description of the event, which can include instructions to further investigate
+      or resolve the incident.
   severity:
     required: true
     description: |
       The perceived severity of the status the event is describing with respect to the affected system.
       This can be critical, error, warning or info.
-  link:
-    required: false
-    description: An optional URL associated with the incident.
+  service:
+    required: true
+    description: The PagerDuty Service to route the alert to.
 runs:
   using: "node16"
   main: "dist/index.js"
