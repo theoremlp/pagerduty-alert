@@ -13,7 +13,7 @@ function coerceSeverity(input: string): Severity {
 
 async function run(): Promise<void> {
   try {
-    // TODO(rahul): Add link
+    const maybeDescription = core.getInput(constants.DESCRIPTION);
     await pagerDutyEvent({
       data: {
         routing_key: core.getInput(constants.PD_INTEGRATION_KEY),
@@ -25,8 +25,16 @@ async function run(): Promise<void> {
           severity: coerceSeverity(core.getInput(constants.SEVERITY)),
           class: "build",
           group: "master",
+          custom_details: {
+            description: maybeDescription !== "" ? maybeDescription : undefined,
+          },
         },
-        dedup_key: github.context.action,
+        dedup_key: `${github.context.action}-${github.context.runId}`,
+        links: [
+          {
+            href: `${github.context.serverUrl}/${github.context.repo}/actions/runs/${github.context.runId}`,
+          },
+        ],
       },
     });
   } catch (error) {
