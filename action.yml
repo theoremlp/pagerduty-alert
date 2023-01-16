@@ -18,6 +18,9 @@ inputs:
     description: |
       The perceived severity of the status the event is describing with respect to the affected system.
       This can be critical, error, warning or info.
+  service:
+    required: true
+    description: The PagerDuty Service to route the alert to.
 runs:
   using: "node16"
   main: "dist/index.js"
