@@ -1943,11 +1943,11 @@ __metadata:
   linkType: hard
 
 "cross-fetch@npm:^3.0.6":
-  version: 3.1.6
-  resolution: "cross-fetch@npm:3.1.6"
+  version: 3.1.7
+  resolution: "cross-fetch@npm:3.1.7"
   dependencies:
-    node-fetch: ^2.6.11
-  checksum: 704b3519ab7de488328cc49a52cf1aa14132ec748382be5b9557b22398c33ffa7f8c2530e8a97ed8cb55da52b0a9740a9791d361271c4591910501682d981d9c
+    node-fetch: 2.6.12
+  checksum: 398b5d0ece13e1f1e4c2f5d2c086454ae177911a0d05d7f9b7d6eb4f2541f1eded023a82c07c0410a4d364f4a0f0bb4781b6ec1c5c46f13be32f15811252feec
   languageName: node
   linkType: hard
 
@@ -4297,7 +4297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.11, node-fetch@npm:^2.6.7":
+"node-fetch@npm:2.6.12, node-fetch@npm:^2.6.7":
   version: 2.6.12
   resolution: "node-fetch@npm:2.6.12"
   dependencies:
