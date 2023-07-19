@@ -1,2 +1,0 @@
-# PagerDuty Alert Action
-
