@@ -47,4 +47,4 @@ jobs:
           COMMIT_EMAIL: "thm-automation[bot]@users.noreply.github.com"
           MESSAGE: "Release of changes in ${{ github.sha }}"
           BRANCH: release
-          TAG: v2
+          TAG: v1
