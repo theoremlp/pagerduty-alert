@@ -31,7 +31,7 @@ async function run(): Promise<void> {
             service: inputs.SERVICE,
           },
         },
-        dedup_key: `${github.context.action}-${github.context.ref}`,
+        dedup_key: `${context.repo}-${context.workflow}-${context.ref}`,
         links: [
           {
             href: runUrl,
