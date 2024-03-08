@@ -103,7 +103,7 @@ async function run() {
                         service: inputs.SERVICE,
                     },
                 },
-                dedup_key: `${context.repo}-${context.workflow}-${context.ref}`,
+                dedup_key: `${context.repo}-${context.workflow}-${context.runId}`,
                 links: [
                     {
                         href: runUrl,
