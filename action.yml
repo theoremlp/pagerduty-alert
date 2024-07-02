@@ -22,5 +22,5 @@ inputs:
     required: true
     description: The PagerDuty Service to route the alert to.
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"
